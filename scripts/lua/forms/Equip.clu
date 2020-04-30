@@ -4,34 +4,77 @@
 --------------------
 --Inventory window--
 --------------------
-frmItem = UI_CreateForm( "frmItem", FALSE, 348, 328, 198, 160, TRUE, FALSE )
+frmItem = UI_CreateForm( "frmItem", FALSE, 344, 325, 220, 180, TRUE, FALSE )
 UI_FormSetHotKey( frmItem, ALT_KEY, HOTKEY_E ) --'E'
 UI_ShowForm( frmItem, FALSE )
 UI_AddFormToTemplete( frmItem, FORM_MAIN )
 UI_SetIsDrag( frmItem, TRUE )
 
-imgItemTop = UI_CreateCompent( frmItem, IMAGE_TYPE, "imgItemTop", 512, 512, 0, 0 )
+offsetX = -30
+offsetY = -22
+imgItemTop = UI_CreateCompent( frmItem, IMAGE_TYPE, "imgItemTop", 512, 512, offsetX, offsetY)
 UI_LoadImage( imgItemTop, "texture/ui/biginv/InventvI2.tga", NORMAL, 512, 512, 0, 0 )
 
-btnClose = UI_CreateCompent( frmItem, BUTTON_TYPE, "btnClose", 14, 14, 350, 26 )
+btnClose = UI_CreateCompent( frmItem, BUTTON_TYPE, "btnClose", 14, 14, 350 + offsetX, 26 + offsetY)
 UI_LoadButtonImage( btnClose, "texture/ui/PublicC.tga", 14, 14, 116, 175, TRUE )
 UI_SetButtonModalResult( btnClose, BUTTON_CLOSE )
 
-labTitle = UI_CreateCompent( frmItem, LABELEX_TYPE, "labTitle", 400, 149, 39, 27 )
+labTitle = UI_CreateCompent( frmItem, LABELEX_TYPE, "labTitle", 400, 149, 39 + offsetX, 27 + offsetY)
 UI_SetCaption( labTitle, "Inventory")
 UI_SetTextColor( labTitle, COLOR_WHITE )
 UI_SetLabelExFont( labTitle, DEFAULT_FONT, TRUE, COLOR_BLACK )
-mgItemBackLT = UI_CreateCompent( frmItem, IMAGE_TYPE, "imgItemBackLT", 36, 36, 17, 24 )
+mgItemBackLT = UI_CreateCompent( frmItem, IMAGE_TYPE, "imgItemBackLT", 36, 36, 17 + offsetX, 24 + offsetY)
 
-imgItem4 = UI_CreateCompent( frmItem, IMAGE_TYPE, "imgItem4", 137, 35, 17, 67 )
-UI_LoadImage( imgItem4, "texture/ui/ods/save2.png", NORMAL, 137, 35, 0, 0 )
-UI_SetAlpha( imgItem4, 90 )
-
-grdItem = UI_CreateCompent( frmItem, GOODS_GRID_TYPE, "grdItem", 209, 273, 161, 57 )
+grdItem = UI_CreateCompent( frmItem, GOODS_GRID_TYPE, "grdItem", 209, 273, 161 + offsetX, 57 + offsetY)
 UI_SetGridSpace( grdItem, 5, 4 )
 UI_SetGridContent( grdItem, 8, 6 )
 UI_SetGridUnitSize( grdItem, 30, 30 )
 UI_SetMargin( grdItem, 0, 0, 0, 0 )
+
+labItemgoldnumber = UI_CreateCompent( frmItem, LABELEX_TYPE, "labItemgoldnumber", 91, 8, 57 + offsetX, 318 + offsetY)
+UI_SetTextColor( labItemgoldnumber, COLOR_WHITE )
+UI_SetLabelExFont( labItemgoldnumber, DEFAULT_FONT, TRUE, COLOR_BLACK )
+
+btnLock = UI_CreateCompent( frmItem, BUTTON_TYPE, "btnLock", 12, 18, 39 + offsetX, 219 + offsetY)
+UI_FormSetHotKey( btnLock, ALT_KEY, HOTKEY_B )
+
+imgLock = UI_CreateCompent( frmItem, IMAGE_TYPE, "imgLock", 12, 18, 39 + offsetX, 219 + offsetY)
+UI_LoadImage( imgLock, "texture/ui/a001.tga",NORMAL, 12, 18, 71, 165, FALSE )
+
+imgUnLock = UI_CreateCompent( frmItem, IMAGE_TYPE, "imgUnLock", 12, 18, 39 + offsetX, 219 + offsetY)
+UI_LoadImage( imgUnLock, "texture/ui/a001.tga",NORMAL, 12, 18, 84, 165, FALSE )
+
+
+btnbrush = UI_CreateCompent( frmItem, BUTTON_TYPE, "btnbrush", 16, 19, 134 + offsetX, 218 + offsetY)
+UI_LoadButtonImage( btnbrush, "texture/ui/SystemBotton3.tga", 16, 19, 151, 226, TRUE )
+cmdLost = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdLost", 16, 19, 134 + offsetX, 218  + offsetY)	-- Ь��
+UI_SetTag( cmdLost, 999 )
+
+cmdArmet = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdArmet", 32, 32, 78 + offsetX, 100 + offsetY)
+cmdBody = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdBody", 32, 32, 78 + offsetX, 140 + offsetY)
+cmdNecklace = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdNecklace", 32, 32, 78 + offsetX, 58 + offsetY)
+cmdRightHand = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdRightHand", 32, 32, 38 + offsetX, 140 + offsetY)
+cmdLeftHand = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdLeftHand", 32, 32, 118 + offsetX, 140 + offsetY)
+cmdGlove = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdGlove", 32, 32, 118 + offsetX, 99 + offsetY)
+cmdCirclet1 = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdCirclet1", 32, 32, 38 + offsetX, 58 + offsetY)
+cmdCirclet2 = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdCirclet2", 32, 32, 118 + offsetX, 58 + offsetY)
+cmdShoes = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdShoes", 32, 32, 78 + offsetX, 181 + offsetY)
+
+UI_SetTag( cmdArmet, enumEQUIP_HEAD )
+UI_SetTag( cmdBody, enumEQUIP_BODY )
+UI_SetTag( cmdNecklace, enumEQUIP_NECK )
+UI_SetTag( cmdRightHand, enumEQUIP_RHAND )
+UI_SetTag( cmdLeftHand, enumEQUIP_LHAND )
+UI_SetTag( cmdGlove, enumEQUIP_GLOVE )
+UI_SetTag( cmdCirclet1, enumEQUIP_HAND1 )
+UI_SetTag( cmdCirclet2, enumEQUIP_HAND2 )
+UI_SetTag( cmdShoes, enumEQUIP_SHOES )
+
+
+-- Useless but kinda break the game if not there ------------------------
+imgItem4 = UI_CreateCompent( frmItem, IMAGE_TYPE, "imgItem4", 137, 35, 17, 67 )
+UI_LoadImage( imgItem4, "texture/ui/ods/save2.png", NORMAL, 137, 35, 0, 0 )
+UI_SetAlpha( imgItem4, 90 )
 
 scrollid = UI_GetScroll( grdItem)
 UI_SetSize( scrollid, 11, 1 )
@@ -48,46 +91,6 @@ UI_SetSize( id, 9, 44 )
 id = UI_GetScrollObj( scrollid, SCROLL_DOWN )
 UI_LoadButtonImage( id, "texture/ui/biginv/PublicC.tga", 11, 9, 166, 0, TRUE )
 UI_SetSize( id, 11, 9 )
-
-labItemgoldnumber = UI_CreateCompent( frmItem, LABELEX_TYPE, "labItemgoldnumber", 91, 8, 57, 318 )
-UI_SetTextColor( labItemgoldnumber, COLOR_WHITE )
-UI_SetLabelExFont( labItemgoldnumber, DEFAULT_FONT, TRUE, COLOR_BLACK )
-
-btnLock = UI_CreateCompent( frmItem, BUTTON_TYPE, "btnLock", 12, 15, 114, 222 )
-UI_FormSetHotKey( btnLock, ALT_KEY, HOTKEY_B )
-
-imgLock = UI_CreateCompent( frmItem, IMAGE_TYPE, "imgLock", 12, 15, 114, 222 )
-UI_LoadImage( imgLock, "texture/ui/a001.tga",NORMAL, 12, 15, 71, 165, FALSE )
-
-imgUnLock = UI_CreateCompent( frmItem, IMAGE_TYPE, "imgUnLock", 12, 15, 114, 222 )
-UI_LoadImage( imgUnLock, "texture/ui/a001.tga",NORMAL, 12, 15, 84, 165, FALSE )
-
-
-btnbrush = UI_CreateCompent( frmItem, BUTTON_TYPE, "btnbrush", 16, 19, 134, 218 )
-UI_LoadButtonImage( btnbrush, "texture/ui/SystemBotton3.tga", 16, 19, 151, 226, TRUE )
-cmdLost = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdLost", 16, 19, 134, 218 )	-- Ь��
-UI_SetTag( cmdLost, 999 )
-
-cmdArmet = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdArmet", 32, 32, 78, 100 )
-cmdBody = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdBody", 32, 32, 78, 140 )
-cmdNecklace = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdNecklace", 32, 32, 78, 58 )
-cmdRightHand = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdRightHand", 32, 32, 38, 140 )
-cmdLeftHand = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdLeftHand", 32, 32, 118, 140 )
-cmdGlove = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdGlove", 32, 32, 118, 99 )
-cmdCirclet1 = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdCirclet1", 32, 32, 38, 58 )
-cmdCirclet2 = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdCirclet2", 32, 32, 118, 58 )
-cmdShoes = UI_CreateCompent( frmItem, COMMAND_ONE_TYPE, "cmdShoes", 32, 32, 78, 181 )
-
-UI_SetTag( cmdArmet, enumEQUIP_HEAD )
-UI_SetTag( cmdBody, enumEQUIP_BODY )
-UI_SetTag( cmdNecklace, enumEQUIP_NECK )
-UI_SetTag( cmdRightHand, enumEQUIP_RHAND )
-UI_SetTag( cmdLeftHand, enumEQUIP_LHAND )
-UI_SetTag( cmdGlove, enumEQUIP_GLOVE )
-UI_SetTag( cmdCirclet1, enumEQUIP_HAND1 )
-UI_SetTag( cmdCirclet2, enumEQUIP_HAND2 )
-UI_SetTag( cmdShoes, enumEQUIP_SHOES )
-
 
 
 -----------------------------------------------------------------------
